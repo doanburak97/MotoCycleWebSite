@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MotorCycleDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Brands">
+    <Key>
+      <PropertyRef Name="BrandId" />
+    </Key>
+    <Property Name="BrandId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BrandName" Type="varchar" MaxLength="100" />
+    <Property Name="ImageUrl" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="CategorieId" />
+    </Key>
+    <Property Name="CategorieId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategorieName" Type="varchar" MaxLength="70" />
+    <Property Name="ImageUrl" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="DealerProducts">
+    <Key>
+      <PropertyRef Name="DealerProductId" />
+    </Key>
+    <Property Name="DealerProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DealerId" Type="int" />
+    <Property Name="ProductId" Type="int" />
+  </EntityType>
+  <EntityType Name="Dealers">
+    <Key>
+      <PropertyRef Name="DealerId" />
+    </Key>
+    <Property Name="DealerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DealerName" Type="varchar" MaxLength="100" />
+    <Property Name="DealerPhone" Type="varchar" MaxLength="100" />
+    <Property Name="DealerAddress" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategorieId" Type="int" />
+    <Property Name="BrandId" Type="int" />
+    <Property Name="ProductName" Type="varchar" MaxLength="100" />
+    <Property Name="Displacement" Type="varchar" MaxLength="50" />
+    <Property Name="Prize" Type="int" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="ImageUrl" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Slider">
+    <Key>
+      <PropertyRef Name="SliderId" />
+    </Key>
+    <Property Name="SliderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="50" />
+    <Property Name="Explanation" Type="varchar" MaxLength="200" />
+    <Property Name="ImageUrl" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Surname" Type="varchar" MaxLength="50" />
+    <Property Name="Mail" Type="varchar" MaxLength="100" />
+    <Property Name="Password" Type="varchar" MaxLength="20" />
+    <Property Name="UserType" Type="varchar" MaxLength="20" />
+    <Property Name="DealerId" Type="int" />
+  </EntityType>
+  <Association Name="FK_DealerProducts_Dealers">
+    <End Role="Dealers" Type="Self.Dealers" Multiplicity="0..1" />
+    <End Role="DealerProducts" Type="Self.DealerProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dealers">
+        <PropertyRef Name="DealerId" />
+      </Principal>
+      <Dependent Role="DealerProducts">
+        <PropertyRef Name="DealerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DealerProducts_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="DealerProducts" Type="Self.DealerProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="DealerProducts">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Brands">
+    <End Role="Brands" Type="Self.Brands" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Brands">
+        <PropertyRef Name="BrandId" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="BrandId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Categories">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CategorieId" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="CategorieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Dealers">
+    <End Role="Dealers" Type="Self.Dealers" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dealers">
+        <PropertyRef Name="DealerId" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="DealerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MotorCycleDBModelStoreContainer">
+    <EntitySet Name="Brands" EntityType="Self.Brands" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DealerProducts" EntityType="Self.DealerProducts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dealers" EntityType="Self.Dealers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Slider" EntityType="Self.Slider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_DealerProducts_Dealers" Association="Self.FK_DealerProducts_Dealers">
+      <End Role="Dealers" EntitySet="Dealers" />
+      <End Role="DealerProducts" EntitySet="DealerProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DealerProducts_Products" Association="Self.FK_DealerProducts_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="DealerProducts" EntitySet="DealerProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Brands" Association="Self.FK_Products_Brands">
+      <End Role="Brands" EntitySet="Brands" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Categories" Association="Self.FK_Products_Categories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Dealers" Association="Self.FK_Users_Dealers">
+      <End Role="Dealers" EntitySet="Dealers" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

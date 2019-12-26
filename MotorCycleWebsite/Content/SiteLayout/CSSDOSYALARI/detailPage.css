@@ -1,0 +1,63 @@
+﻿#sayfa {
+    width: 800px;
+    margin-top: 100px;
+    margin-left: 350px;
+    margin-bottom: 100px;
+}
+
+#ustAlan {
+    width: 800px;
+    background-color: lightgrey;
+}
+
+#sagSutun {
+    float: right;
+    width: 350px;
+}
+
+#solSutun {
+    float: left;
+    width: 400px;
+}
+
+#altAlan {
+    margin-top: 350px;
+    width: 800px;
+}
+
+#img {
+    width: 400px;
+    height: 300px;
+}
+
+#tdleft {
+    width: auto;
+    height: auto;
+    color: blue;
+    font-size: 18px;
+}
+
+#tdright {
+    margin-left: 20px;
+    float: right;
+    width: 250px;
+    height: auto;
+    font-size: 18px;
+}
+
+#card {
+    float: left;
+    width: 187px;
+}
+
+#cardImg {
+    width: 200px;
+    height: 150px;
+}
+
+#tdSimilar {
+    border: solid;
+    border-color: lightgrey;
+    width: 200px;
+    margin-left:10px;
+}

@@ -1,0 +1,95 @@
+﻿#sayfaMainTable {
+    width: 1500px;
+    margin-top: 50px;
+    margin-left: 300px;
+    margin-bottom: 100px;
+}
+
+#sayfaMainTable2 {
+    width: 1500px;
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-bottom: 100px;
+}
+
+#ustAlanTable {
+    width: 1000px;
+    background-color: lightgray;
+    float: right;
+}
+
+#altAlanTable {
+    width: 1000px;
+    clear: both;
+}
+
+#thTablePage {
+    float: left;
+    width: 200px;
+    height: 50px;
+    background-color: lightgray;
+    border: solid;
+    border-color: darkgrey;
+    font-size: 16px;
+}
+
+#thTablePage2 {
+    float: left;
+    width: 180px;
+    height: 50px;
+    background-color: lightgray;
+    border: solid;
+    border-color: darkgrey;
+    font-size: 16px;
+}
+
+#tdTablePage {
+    float: left;
+    width: 200px;
+    height: 100px;
+    background-color: white;
+    border: solid;
+    border-color: darkgrey;
+    font-size: 14px;
+}
+
+#tdTablePage2 {
+    float: left;
+    width: 180px;
+    height: 100px;
+    background-color: white;
+    border: solid;
+    border-color: darkgrey;
+    font-size: 14px;
+}
+
+#tdButton {
+    float: left;
+    width: 200px;
+    height: 100px;
+    background-color: white;
+    border: solid;
+    border-color: darkgrey;
+    font-size: 14px;
+}
+
+#btnAdd {
+    width: 120px;
+    height: 30px;
+    background-color: green;
+    color: white;
+}
+
+#btnUpdate {
+    width: 95px;
+    height: 95px;
+    float: left;
+    color: white;
+}
+
+#btnDelete {
+    width: 95px;
+    height: 95px;
+    float: right;
+    color: white;
+}

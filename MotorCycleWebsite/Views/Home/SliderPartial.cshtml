@@ -1,0 +1,21 @@
+﻿@model IEnumerable<MotorCycleWebsite.Models.Slider>
+
+@{ 
+    Layout = null;
+}
+<div id="main-slider" class="flexslider">
+    <ul class="slides">
+        @foreach (var item in Model)
+        {
+            <li>
+                <img style="width:780px;height:440px;" src="@item.ImageUrl" alt="@item.Title" />
+                <div class="flex-caption" style="height:410px;">
+                    <h3>@item.Title</h3>
+                    <p>@item.Explanation</p>
+                </div>
+            </li>
+
+        }
+
+    </ul>
+</div>

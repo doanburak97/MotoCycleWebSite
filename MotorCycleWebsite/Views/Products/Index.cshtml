@@ -1,0 +1,42 @@
+﻿@model IEnumerable<MotorCycleWebsite.Models.Products>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div id="sayfaMainTable2">
+
+    <input type="submit" id="btnAdd" value="Create" onclick="window.location='/Products/Create/'" />
+    <div id="altAlanTable2">
+        <table>
+            <tr>
+                <td id="thTablePage2">@Html.DisplayNameFor(model => model.ProductName)</td>
+                <td id="thTablePage2">@Html.DisplayNameFor(model => model.Prize)</td>
+                <td id="thTablePage2">@Html.DisplayNameFor(model => model.Quantity)</td>
+                <td id="thTablePage2">@Html.DisplayNameFor(model => model.ImageUrl)</td>
+                <td id="thTablePage2">@Html.DisplayNameFor(model => model.Displacement)</td>
+                <td id="thTablePage2">@Html.DisplayNameFor(model => model.Brands.BrandName)</td>
+                <td id="thTablePage2">@Html.DisplayNameFor(model => model.Categories.CategorieName)</td>
+                <td id="thTablePage2">Action</td>
+            </tr>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td id="tdTablePage2">@Html.DisplayFor(modelItem => item.ProductName)</td>
+                <td id="tdTablePage2">@Html.DisplayFor(modelItem => item.Prize)</td>
+                <td id="tdTablePage2">@Html.DisplayFor(modelItem => item.Quantity)</td>
+                <td id="tdTablePage2">@Html.DisplayFor(modelItem => item.ImageUrl)</td>
+                <td id="tdTablePage2">@Html.DisplayFor(modelItem => item.Displacement)</td>
+                <td id="tdTablePage2">@Html.DisplayFor(modelItem => item.Brands.BrandName)</td>
+                <td id="tdTablePage2">@Html.DisplayFor(modelItem => item.Categories.CategorieName)</td>
+                <td id="tdButton">
+                    <button id="btnUpdate">@Html.ActionLink("Edit", "Edit", new { id = item.ProductId })</button>
+                    <button id="btnDelete">@Html.ActionLink("Delete", "Delete", new { id = item.ProductId })</button>
+                </td>
+            </tr>
+            }
+
+        </table>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<MotorCycleWebsite.Models.Slider>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div id="sayfaMainTable">
+
+    <input type="submit" id="btnAdd" value="Create" onclick="window.location='/Sliders/Create/'" />
+    <div id="altAlanTable">
+        <table>
+            <tr>
+                <td id="thTablePage">@Html.DisplayNameFor(model => model.Title)</td>
+                <td id="thTablePage">@Html.DisplayNameFor(model => model.Explanation)</td>
+                <td id="thTablePage">@Html.DisplayNameFor(model => model.ImageUrl)</td>
+                <td id="thTablePage">Action</td>
+            </tr>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td id="tdTablePage">@Html.DisplayFor(modelItem => item.Title)</td>
+                <td id="tdTablePage">@Html.DisplayFor(modelItem => item.Explanation)</td>
+                <td id="tdTablePage"><img src="@item.ImageUrl" width="194" height="94" /></td>
+                <td id="tdButton">
+                    <button id="btnUpdate">@Html.ActionLink("Edit", "Edit", new { id = item.SliderId })</button>
+                    <button id="btnDelete">@Html.ActionLink("Delete", "Delete", new { id = item.SliderId })</button>
+                </td>
+            </tr>
+            }
+
+        </table>
+    </div>
+</div>

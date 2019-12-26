@@ -1,0 +1,32 @@
+﻿@model IEnumerable<MotorCycleWebsite.Models.DealerProducts>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div id="sayfaMainTable">
+
+    <input type="submit" id="btnAdd" value="Create" onclick="window.location='/DealerProducts/Create/'" />
+    <div id="altAlanTable">
+        <table>
+            <tr>
+                <td id="thTablePage">@Html.DisplayNameFor(model => model.Dealers.DealerName)</td>
+                <td id="thTablePage">@Html.DisplayNameFor(model => model.Products.ProductName)</td>
+                <td id="thTablePage">Action</td>
+            </tr>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td id="tdTablePage">@Html.DisplayFor(modelItem => item.Dealers.DealerName)</td>
+                <td id="tdTablePage">@Html.DisplayFor(modelItem => item.Products.ProductName)</td>
+                <td id="tdButton">
+                    <button id="btnUpdate">@Html.ActionLink("Edit", "Edit", new { id = item.DealerProductId })</button>
+                    <button id="btnDelete">@Html.ActionLink("Delete", "Delete", new { id = item.DealerProductId })</button>
+                </td>
+            </tr>
+            }
+
+        </table>
+    </div>
+</div>

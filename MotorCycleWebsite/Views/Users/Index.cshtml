@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MotorCycleWebsite.Models.Users>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div id="sayfaMainTable2">
+
+    <input type="submit" id="btnAdd" value="Create" onclick="window.location='/Users/Create/'" />
+    <div id="altAlanTable2">
+        <table>
+            <tr>
+                <td id="thTablePage2">@Html.DisplayNameFor(model => model.Name)</td>
+                <td id="thTablePage2">@Html.DisplayNameFor(model => model.Surname)</td>
+                <td id="thTablePage2">@Html.DisplayNameFor(model => model.Mail)</td>
+                <td id="thTablePage2">@Html.DisplayNameFor(model => model.Password)</td>
+                <td id="thTablePage2">@Html.DisplayNameFor(model => model.UserType)</td>
+                <td id="thTablePage2">@Html.DisplayNameFor(model => model.Dealers.DealerName)</td>
+                <td id="thTablePage2">Action</td>
+            </tr>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td id="tdTablePage2">@Html.DisplayFor(modelItem => item.Name)</td>
+                <td id="tdTablePage2">@Html.DisplayFor(modelItem => item.Surname)</td>
+                <td id="tdTablePage2">@Html.DisplayFor(modelItem => item.Mail)</td>
+                <td id="tdTablePage2">@Html.DisplayFor(modelItem => item.Password)</td>
+                <td id="tdTablePage2">@Html.DisplayFor(modelItem => item.UserType)</td>
+                <td id="tdTablePage2">@Html.DisplayFor(modelItem => item.Dealers.DealerName)</td>
+                <td id="tdButton">
+                    <button id="btnUpdate">@Html.ActionLink("Edit", "Edit", new { id = item.UserId })</button>
+                    <button id="btnDelete">@Html.ActionLink("Delete", "Delete", new { id = item.UserId })</button>
+                </td>
+            </tr>
+            }
+
+        </table>
+    </div>
+</div>

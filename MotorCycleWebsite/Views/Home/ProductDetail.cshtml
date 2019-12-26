@@ -1,0 +1,117 @@
+﻿@model MotorCycleWebsite.Models.Products
+@{
+    ViewBag.Title = "ProductDetail";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<div id="sayfa">
+    <div id="ustAlan">
+        <h3>@Model.ProductName</h3>
+    </div><br />
+    <div id="sagSutun">
+        <table>
+            <tr>
+                <td id="tdleft"><b><p>Prize:</p></b></td>
+                <td id="tdright"><p>@Model.Prize TL</p></td>
+            </tr>
+            <tr>
+                <td id="tdleft"><b><p>Brand:</p></b></td>
+                <td id="tdright"><p>@Model.Brands.BrandName</p></td>
+            </tr>
+            <tr>
+                <td id="tdleft"><b><p>Model:</p></b></td>
+                <td id="tdright"><p>@Model.ProductName</p></td>
+            </tr>
+            <tr>
+                <td id="tdleft"><b><p>Categorie:</p></b></td>
+                <td id="tdright"><p>@Model.Categories.CategorieName</p></td>
+            </tr>
+            <tr>
+                <td id="tdleft"><b><p>Quantity:</p></b></td>
+                <td id="tdright"><p>@Model.Quantity</p></td>
+            </tr>
+            <tr>
+                <td id="tdleft"><b><p>Displacement:</p></b></td>
+                <td id="tdright"><p>@Model.Displacement</p></td>
+            </tr>
+        </table>
+        <br />
+    </div>
+    <div id="solSutun">
+        <div id="resim">
+            <img id="img" src="@Model.ImageUrl" />
+        </div>
+    </div>
+
+    <div id="altAlan">
+        <h3 style="background-color:lightgrey;">Similar Product</h3>
+        <table>
+            <tr>
+                <td id="tdSimilar">
+                    <div id="card">
+                        <img id="cardImg" src="~/Content/SiteLayout/img/2019-Yamaha-YZF-R1-8.jpg" />
+                    </div>
+                </td>
+                <td id="tdSimilar">
+                    <div id="card">
+                        <img id="cardImg" src="~/Content/SiteLayout/img/kawasakivulcan.jpg" />
+                    </div>
+                </td>
+                <td id="tdSimilar">
+                    <div id="card">
+                        <img id="cardImg" src="~/Content/SiteLayout/img/ktm1190rc8r.jpg" />
+                    </div>
+                </td>
+                <td id="tdSimilar">
+                    <div id="card">
+                        <img id="cardImg" src="~/Content/SiteLayout/img/supercub-blue.jpg" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td id="tdSimilar">
+                    <div id="card">
+                        <b><p>YAMAHA</p></b>
+                    </div>
+                </td>
+                <td id="tdSimilar">
+                    <div id="card">
+                        <b><p>KAWASAKI</p></b>
+                    </div>
+                </td>
+                <td id="tdSimilar">
+                    <div id="card">
+                        <b><p>KTM</p></b>
+                    </div>
+                </td>
+                <td id="tdSimilar">
+                    <div id="card">
+                        <b><p>HONDA</p></b>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td id="tdSimilar">
+                    <div id="card">
+                        <b><p>Yamaha YZF R1</p></b>
+                    </div>
+                </td>
+                <td id="tdSimilar">
+                    <div id="card">
+                        <b><p>Kawasaki Vulcan S</p></b>
+                    </div>
+                </td>
+                <td id="tdSimilar">
+                    <div id="card">
+                        <b><p>KTM 1190 RC8 R</p></b>
+                    </div>
+                </td>
+                <td id="tdSimilar">
+                    <div id="card">
+                        <b><p>Honda Cub 125</p></b>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

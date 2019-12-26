@@ -1,0 +1,26 @@
+﻿@model IEnumerable<MotorCycleWebsite.Models.Brands>
+@{
+    ViewBag.Title = "MBrands";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<div id="sayfaMain">
+    <div id="ustAlanMain">
+        <h3>Brands</h3>
+    </div>
+    <div id="altAlanMain">
+        <table>
+            <tr>
+                @foreach (var item in Model)
+                {
+
+                    <td id="tdMain">
+                        <img id="imgMain" src="@item.ImageUrl" />
+                        <div id="divModelMarka">@item.BrandName</div>
+                    </td>
+                }
+            </tr>
+
+        </table>
+    </div>
+</div>

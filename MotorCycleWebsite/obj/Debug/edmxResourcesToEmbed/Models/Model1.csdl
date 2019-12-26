@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MotorCycleDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Brands">
+    <Key>
+      <PropertyRef Name="BrandId" />
+    </Key>
+    <Property Name="BrandId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BrandName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Products_Brands" FromRole="Brands" ToRole="Products" />
+    <Property Name="ImageUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="CategorieId" />
+    </Key>
+    <Property Name="CategorieId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategorieName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Products_Categories" FromRole="Categories" ToRole="Products" />
+    <Property Name="ImageUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="DealerProducts">
+    <Key>
+      <PropertyRef Name="DealerProductId" />
+    </Key>
+    <Property Name="DealerProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DealerId" Type="Int32" />
+    <Property Name="ProductId" Type="Int32" />
+    <NavigationProperty Name="Dealers" Relationship="Self.FK_DealerProducts_Dealers" FromRole="DealerProducts" ToRole="Dealers" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_DealerProducts_Products" FromRole="DealerProducts" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Dealers">
+    <Key>
+      <PropertyRef Name="DealerId" />
+    </Key>
+    <Property Name="DealerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DealerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DealerPhone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DealerAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DealerProducts" Relationship="Self.FK_DealerProducts_Dealers" FromRole="Dealers" ToRole="DealerProducts" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Dealers" FromRole="Dealers" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="BrandId" Type="Int32" />
+    <Property Name="CategorieId" Type="Int32" />
+    <Property Name="Prize" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="ImageUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Brands" Relationship="Self.FK_Products_Brands" FromRole="Products" ToRole="Brands" />
+    <NavigationProperty Name="Categories" Relationship="Self.FK_Products_Categories" FromRole="Products" ToRole="Categories" />
+    <NavigationProperty Name="DealerProducts" Relationship="Self.FK_DealerProducts_Products" FromRole="Products" ToRole="DealerProducts" />
+    <Property Name="Displacement" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="UserType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DealerId" Type="Int32" />
+    <NavigationProperty Name="Dealers" Relationship="Self.FK_Users_Dealers" FromRole="Users" ToRole="Dealers" />
+  </EntityType>
+  <Association Name="FK_Products_Brands">
+    <End Role="Brands" Type="Self.Brands" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Brands">
+        <PropertyRef Name="BrandId" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="BrandId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Categories">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CategorieId" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="CategorieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DealerProducts_Dealers">
+    <End Role="Dealers" Type="Self.Dealers" Multiplicity="0..1" />
+    <End Role="DealerProducts" Type="Self.DealerProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dealers">
+        <PropertyRef Name="DealerId" />
+      </Principal>
+      <Dependent Role="DealerProducts">
+        <PropertyRef Name="DealerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DealerProducts_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="DealerProducts" Type="Self.DealerProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="DealerProducts">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Dealers">
+    <End Role="Dealers" Type="Self.Dealers" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dealers">
+        <PropertyRef Name="DealerId" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="DealerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MotorCycleDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Brands" EntityType="Self.Brands" />
+    <EntitySet Name="Categories" EntityType="Self.Categories" />
+    <EntitySet Name="DealerProducts" EntityType="Self.DealerProducts" />
+    <EntitySet Name="Dealers" EntityType="Self.Dealers" />
+    <EntitySet Name="Products" EntityType="Self.Products" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK_Products_Brands" Association="Self.FK_Products_Brands">
+      <End Role="Brands" EntitySet="Brands" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Categories" Association="Self.FK_Products_Categories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DealerProducts_Dealers" Association="Self.FK_DealerProducts_Dealers">
+      <End Role="Dealers" EntitySet="Dealers" />
+      <End Role="DealerProducts" EntitySet="DealerProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DealerProducts_Products" Association="Self.FK_DealerProducts_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="DealerProducts" EntitySet="DealerProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Dealers" Association="Self.FK_Users_Dealers">
+      <End Role="Dealers" EntitySet="Dealers" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="Slider" EntityType="MotorCycleDBModel.Slider" />
+  </EntityContainer>
+  <EntityType Name="Slider">
+    <Key>
+      <PropertyRef Name="SliderId" />
+    </Key>
+    <Property Name="SliderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Explanation" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ImageUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

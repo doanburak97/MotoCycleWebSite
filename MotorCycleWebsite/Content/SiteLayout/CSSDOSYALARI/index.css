@@ -1,0 +1,53 @@
+﻿#sayfaMain {
+    width: 1000px;
+    margin-top: 100px;
+    margin-left: 250px;
+    margin-bottom: 100px;
+}
+
+#ustAlanMain {
+    width: 1000px;
+    background-color: lightgray;
+    float: left;
+}
+
+#altAlanMain {
+    width: 1000px;
+    clear: both;
+}
+
+#tdMain {
+    margin-top: 50px;
+    float: left;
+    margin-left: 20px;
+    width: 225px;
+    height: 250px;
+    background-color: lightgray;
+    border: solid;
+    border-color: darkgrey;
+}
+
+#imgMain {
+    width: 220px;
+    height: 175px;
+}
+
+#divModelMarka {
+    text-align: center;
+    margin-top: 10px;
+    margin-left: auto;
+    width: 220px;
+    height: 20px;
+    background-color: white
+}
+
+#divFiyat {
+    text-align: center;
+    margin-top: 10px;
+    margin-left: auto;
+    width: 220px;
+    height: 20px;
+    background-color: white;
+    color: green;
+    font-size: 16px;
+}
